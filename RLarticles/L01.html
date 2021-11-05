@@ -114,7 +114,8 @@
 				<!-- <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
 								<p>Nunc quis dui scelerisque, scelerisque urna ut, dapibus orci. Sed vitae condimentum lectus, ut imperdiet quam. Maecenas in justo ut nulla aliquam sodales vel at ligula. Sed blandit diam odio, sed fringilla lectus molestie sit amet. Praesent eu tortor viverra lorem mattis pulvinar feugiat in turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce ullamcorper tellus sit amet mattis dignissim. Phasellus ut metus ligula. Curabitur nec leo turpis. Ut gravida purus quis erat pretium, sed pellentesque massa elementum. Fusce vestibulum porta augue, at mattis justo. Integer sed sapien fringilla, dapibus risus id, faucibus ante. Pellentesque mattis nunc sit amet tortor pellentesque, non placerat neque viverra. </p> -->
 				<h2 id='一概述和markov-decision-process'>一、概述和Markov Decision Process</h2>
-				<p>Markov Decision
+				<p><img src="RLimage/MDP.png" style = "float: left;zoom: 25%;" alt="value_iteration"  />
+                    Markov Decision
 					Process（马尔科夫决策过程）指的是一种随机过程，是强化学习最重要的理论基础之一。简单的说，马尔科夫决策过程中最重要的对象有两个，一个是Agent，另一个是Environment。在强化学习的过程中，Agent和Environment不断进行互动，信息相互流动，互动的结果提供给Agent作为其进行下一步行动（action）的依据，同时互动的经验也会被纳入到学习的过程中，完成强化学习这一过程。简单的说，在时间t时，Agent处于某个当前状态（state）
 					<mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg
 							xmlns="http://www.w3.org/2000/svg" width="1.826ex" height="1.357ex" role="img"
@@ -306,7 +307,7 @@
 						</svg></mjx-container>
 					<script type="math/tex">\pi</script>，也就是学习在这个环境下给定一个state，进行什么样的action才能获得最大的reward的问题。
 				</p>
-				<p><img src="RLimage/MDP.png" alt="value_iteration" style="zoom:25%;" /></p>
+				<!-- <p><img src="RLimage/MDP.png" alt="value_iteration" style="zoom:25%;" /></p> -->
 				<p>好像有点扯远了，具体对Markov Decision
 					Process下一个定义的话是这样的，Markov过程是一个典型的序列决策过程，下一个状态的产生只和当前的状态有关，与历史状态没有<strong>直接关系</strong>，但是当前的状态s实际上是和历史状态相关联的，但是我们在进行决策的时候并不需要考虑这一点，这就是Markov的特点。下面结合课程中所给的
 					<mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg
@@ -370,9 +371,11 @@
 						</svg></mjx-container>
 					<script type="math/tex">Gridworld</script>例子对MDP过程的一系列术语进行解释
 				</p>
-				<p>Gridworld小游戏如下图所示，机器人（Agent）处在一个4*3的棋盘（Environment）中，棋盘上有12个方格，每个方格就是一个状态，机器人在不同位置的不同方格中就是处于不同的状态，从一个方格移动到另一个方格就是从一个状态转移到另一个状态。注意到棋盘上有一些障碍物，这就是不能达到的状态，另外有标注&quot;+1&quot;的宝石和标注&quot;-1&quot;的爆炸，这些表示<strong>离开这个状态</strong>的时候可以获得的reward（注意！在移动过程中某个状态奖励获得的时刻是在进行了action离开这个状态的时候才能够获得），其他没有标注数字的格子状态的reward都是零。
+				<p><img src="RLimage/gridworld.png" alt="value_iteration" style="float:left;zoom:25%;" />
+                    Gridworld小游戏如左图所示，机器人（Agent）处在一个4*3的棋盘（Environment）中，棋盘上有12个方格，每个方格就是一个状态，机器人在不同位置的不同方格中就是处于不同的状态，从一个方格移动到另一个方格就是从一个状态转移到另一个状态。注意到棋盘上有一些障碍物，这就是不能达到的状态，另外有标注&quot;+1&quot;的宝石和标注&quot;-1&quot;的爆炸，这些表示<strong>离开这个状态</strong>的时候可以获得的reward（注意！在移动过程中某个状态奖励获得的时刻是在进行了action离开这个状态的时候才能够获得），其他没有标注数字的格子状态的reward都是零。
 				</p>
-				<p><img src="RLimage/gridworld.png" alt="value_iteration" style="zoom:25%;" /></p>
+				<!-- <p><img src="RLimage/gridworld.png" alt="value_iteration" style="zoom:25%;" /></p> -->
+                <br/>
 				<ul>
 					<li>
 						<p>Set of states <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg
@@ -1403,7 +1406,7 @@
 					</div>
 				</div>
 				<p>价值迭代试图用动态规划的思路求得这一最优价值函数，动态规划的思路如下:</p>
-				<p><img src="RLimage/value_iteration.png" alt="value_iteration" style="zoom:25%;" /></p>
+				<p style = "text-align: center;"><img src="RLimage/value_iteration.png" alt="value_iteration" style="zoom:25%;" /></p>
 				<p>&nbsp;</p>
 				<p>也就是（1）首先定义函数<mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg
 							xmlns="http://www.w3.org/2000/svg" width="5.683ex" height="2.355ex" role="img"
@@ -2677,7 +2680,7 @@
 					，因此全部存储下来的话需要更大的存储空间，这也就为策略参数化以及DQN算法埋下了伏笔。关于Q函数的迭代方法Q - learning，在下一个Lecture中有详细的介绍
 				</p>
 				<h2 id='二策略迭代'>二、策略迭代</h2>
-				<p><img src="RLimage/policy_evaluation.png" alt="policy_evaluation" style="zoom:25%;" /></p>
+				<p style="text-align: center;"><img src="RLimage/policy_evaluation.png" alt="policy_evaluation" style="zoom:25%;" /></p>
 				<p>回忆<mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg
 							xmlns="http://www.w3.org/2000/svg" width="5.683ex" height="2.262ex" role="img"
 							focusable="false" viewBox="0 -750 2511.9 1000" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -2893,7 +2896,7 @@
 					<script type="math/tex">V^{\pi}(s)</script>函数如上。这样就完成了Policy
 					Evaluation的过程，即策略评估，通过获得此策略下各状态的价值函数，然后遍历所有状态，用获得的价值函数值调整现在的策略，即讲此状态下选择的action调整成奖励期望函数的最大值对应的action
 				</p>
-				<p><img src="RLimage/policy_iteration.png" alt="policy_iteration" style="zoom:25%;" /></p>
+				<p style="text-align: center;"><img src="RLimage/policy_iteration.png" alt="policy_iteration" style="zoom:25%;" /></p>
 				<p>需要注意的是，在进行策略调整的时候，所使用的价值函数是旧策略对应的价值函数</p>
 				<h2 id='三总结'>三、总结</h2>
 				<p>以上介绍了MDP的定义，以及使用value Iteration与policy iteration两种简单方法完成了确定有限状态下的强化学习。</p>
